@@ -7,14 +7,14 @@ using namespace std;
 Cliente::Cliente(){
 	
 	usuario="";
-	contraseña="";
+	contrasenia="";
 	edad=0;
 	dinero=0;
 }
 
-Cliente::Cliente(string p_usuario,string p_contraseña,int p_edad, int p_dinero){
+Cliente::Cliente(string p_usuario,string p_contrasenia,int p_edad, int p_dinero){
 	this->usuario=p_usuario;
-	this->contraseña=p_contraseña;
+	this->contrasenia=p_contrasenia;
 	this->edad=p_edad;
 	this->dinero=p_dinero;
 }
@@ -27,12 +27,12 @@ void Cliente::setUsuario(string p_usuario){
 	this->usuario=p_usuario;
 }
 
-string Cliente::getContraseña(){
-	return contraseña;
+string Cliente::getContra(){
+	return contrasenia;
 }
 
-void Cliente::setContraseña(string p_contraseña){
-	this->contraseña=p_contraseña;
+void Cliente::setContra(string p_contrasenia){
+	this->contrasenia=p_contrasenia;
 }
 
 int Cliente::getEdad(){
@@ -48,7 +48,7 @@ int Cliente::getDinero(){
 }
 
 void Cliente::setDinero(int p_dinero){
-	this->dinero=p_dinero
+	this->dinero=p_dinero;
 }
 
 Cliente::~Cliente(){

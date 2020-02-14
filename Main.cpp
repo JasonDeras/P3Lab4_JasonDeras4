@@ -1,6 +1,6 @@
 #include <iostream>
 
-using namepsace std;
+using namespace std;
 
 int menu(){
 	int opcion;
@@ -16,7 +16,7 @@ int main(){
 
 	while(usuario==1){
 		cout<<"Volver al menu?[1.-Si/2.-No]: ";
-		cin>>usuario
+		cin>>usuario;
 	}//Fin del while del usuario
 
 }//Fin del main

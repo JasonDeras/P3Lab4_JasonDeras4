@@ -18,7 +18,7 @@ Libro::Libro(string p_titulo, string p_autor, string p_publicacion, int p_precio
 	this->autor=p_autor;
 	this->publicacion=p_publicacion;
 	this->precio=p_precio;
-	this->estado=p_estado
+	this->estado=p_estado;
 }
 
 string Libro::getTitulo(){
@@ -49,7 +49,7 @@ int Libro::getPrecio(){
 	return precio;
 }
 
-void Libro::setDinero(int p_precio){
+void Libro::setPrecio(int p_precio){
 	this->precio=p_precio;
 }
 

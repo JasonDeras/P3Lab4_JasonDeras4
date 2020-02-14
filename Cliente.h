@@ -11,7 +11,7 @@ class Cliente{
 	private: 
 
 		string usuario;
-		string contraseña;
+		string contrasenia;
 		int edad;
 		int dinero;
 
@@ -23,8 +23,8 @@ class Cliente{
 		string getUsuario();
 		void setUsuario(string);
 
-		string getContraseña();
-		void setContraseña(string);
+		string getContra();
+		void setContra(string);
 
 		int getEdad();
 		void setEdad(int);

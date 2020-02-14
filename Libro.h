@@ -19,15 +19,15 @@ class Libro{
 	public: 
 
 		Libro();
-		Libro(string, string, string, int ,string;
+		Libro(string, string, string, int ,string);
 
 		string getTitulo();
-		void settitulo(string);
+		void setTitulo(string);
 
 		string getAutor();
 		void setAutor(string);
 
-		strin getPublicacion();
+		string getPublicacion();
 		void setPublicacion(string);
 
 		int getPrecio();
@@ -35,7 +35,7 @@ class Libro{
 
 		string getEstado();
 		void setEstado(string);
-		
+
 		~Libro();
 };
 

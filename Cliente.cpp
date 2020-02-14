@@ -6,10 +6,10 @@ using namespace std;
 
 Cliente::Cliente(){
 	
-		usuario="";
-		contraseña="";
-		edad=0;
-		dinero=0;
+	usuario="";
+	contraseña="";
+	edad=0;
+	dinero=0;
 }
 
 Cliente::Cliente(string p_usuario,string p_contraseña,int p_edad, int p_dinero){

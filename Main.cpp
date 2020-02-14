@@ -38,6 +38,7 @@ int menuCliente(){
 	cout<<"4. Agregar dinero a mi cuenta"<<endl;
 	cout<<"5. Restablecer contraseña"<<endl;
 	cout<<"6. Borrar cuenta"<<endl;
+	cout<<"7. Salir"<<endl;
 	cout<<"Ingrese una opcion: ";
 	cin>>opcion;
 	cout<<"\n\n";
@@ -115,10 +116,6 @@ void eliminarLibro(int posicion){
 	lista_libros[posicion]->~Libro();
 }//Fin del motodo para eliminar un libro
 
-void EliminarRegistro(){
-
-}//Fin del metodo para eliminar el registro de libros
-
 //Void Agregar Usuarios
 void AgregarUsuario(){
 
@@ -154,19 +151,32 @@ void AgregarUsuario(){
 
 }//Fin del Metodo para agregar usuario
 
+
+//Opciones cliente
+
+void Compra(){
+
+}//Fin del metodo de la compra
+
+void Bucar_Autor(){
+
+}//Fin del metodo de la busqueda de autor
+
+void Buscar_Titulo(){
+
+}//Fin del metodo de la busqueda por titulo
+
+void Agregar_Dinero(){
+
+}//Fin del metodo para agregar dinero
+
+void Borrar_Cuenta(){
+
+}//Fin del metodo de borrar cueta
+
 int main(){
 
 	lista_usuarios[cantidad_usuarios]=new Cliente("n.duron","sybase","Nicolle Duron",20,1000);
-
-	/*
-        cout<<lista_usuarios[cantidad_usuarios]->getUsuario()<<endl
-        <<lista_usuarios[cantidad_usuarios]->getContra()<<endl
-        <<lista_usuarios[cantidad_usuarios]->getNombre()<<endl
-        <<lista_usuarios[cantidad_usuarios]->getEdad()<<endl
-        <<lista_usuarios[cantidad_usuarios]->getDinero()<<endl;    
-    */
-   delete[]lista_usuarios;
-   delete[]lista_libros;
 
    int opcion;
    int usuario_menu=1;
@@ -195,9 +205,9 @@ int main(){
 
    				if(usuario=="n.duron"&&contra=="sybase"){
 
-   					opcion=menuAdmin();
-
    					do{
+   						opcion=menuAdmin();
+
    						switch(opcion){
 
 							case 1:{
@@ -247,20 +257,76 @@ int main(){
 
 							break;}
 
-							case 4:
+							case 4:{
 								//Eliminar el registro de los libros
-							break;
+								delete []lista_libros;
+								cout<<"Se elimio el registro de los libros"<<endl<<endl;
+								if(lista_libros!=NULL){
+									delete []lista_libros;
+									lista_libros=NULL;
+								}//Liberacion de memoria
+							break;}
 
-   							default:
+							case 5:{
+								usuario_admin=2;
+							break;}
+
+   							default:{
    								cout<<"Opcion no valida"<<endl<<endl;
-   							break;
+   							break;}
    								
-   						}//Fin del case de las opciones del usuario
+   						}//Fin del case de las opciones del admin
    						cout<<"Volver al menu de admin [1.-Si/2.-No]: ";
    						cin>>usuario_admin;
    					}while(usuario_admin!=2);
 
    				}else{
+   					for(int i=0;i<10;i++){
+   						int usuario_cliente=1;
+   						if(lista_usuarios[i]->getUsuario()==usuario &&lista_usuarios[i]->getContra()==contra){
+   							do{
+   								opcion=menuCliente();
+   						
+   								switch(opcion){
+
+									case 1:{
+										//Comprar libro
+										
+									break;}
+
+									case 2:{
+										//Buscar por autor
+
+									break;}
+
+									case 3:{
+										//Buscar por titulo 
+
+									break;}
+
+									case 4:{
+										//Agregar dinero a mi cuenta
+									break;}
+
+									case 5:{
+										//Restablecer contraseña
+									break;}	
+
+									case 6:{
+										//Borrar cuenta
+									break;}
+
+   									default:{
+   										cout<<"Opcion no valida"<<endl<<endl;
+   									break;}
+   								
+   								}//Fin del case de las opciones del cliente
+   								cout<<"Volver al menu de admin [1.-Si/2.-No]: ";
+   								cin>>usuario_cliente;
+   								}while(usuario_cliente!=2);
+   						}//Fin dl fi si entro
+
+   					}//Fin del for
 
    				}//Fin del if del login
 
@@ -275,11 +341,25 @@ int main(){
    			break;
 
    		}//Fin del switch
+
    		cout<<"Volver al menu de login o registro [1.-Si,2.-No]: ";
    		cin>>usuario_menu;
 
 	}while(usuario_menu!=2);
-	delete[]lista_usuarios;
-    delete[]lista_libros;
+
+	//Liberacion de usuarios
+	delete[]lista_usuarios;				
+	if(lista_usuarios!=NULL){
+		delete []lista_usuarios;
+		lista_usuarios=NULL;
+	}//Liberacion de memoria
+
+
+	//Libreacion de libros
+    delete []lista_libros;							
+	if(lista_libros!=NULL){
+		delete []lista_libros;
+		lista_libros=NULL;
+	}//Liberacion de memoria
 
 }//Fin del main

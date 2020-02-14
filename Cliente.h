@@ -36,8 +36,6 @@ class Cliente{
 		int getDinero();
 		void setDinero(int);
 
-		void toString();
-
 		~Cliente();
 };
 

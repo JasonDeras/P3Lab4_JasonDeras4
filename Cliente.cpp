@@ -1,6 +1,7 @@
 #include "Cliente.h"
 
 #include <typeinfo>
+#include <iomanip>
 
 using namespace std;
 
@@ -60,16 +61,6 @@ int Cliente::getDinero(){
 
 void Cliente::setDinero(int p_dinero){
 	this->dinero=p_dinero;
-}
-
-void Cliente::toString(){
-	
-	cout<<"Usuario: "<<usuario<<endl;
-	cout<<"Contraseña: "<<contrasenia<<endl;
-	cout<<"Nombre: "<<nombre<<endl;
-	cout<<"Edad: "<<edad<<endl;
-	cout<<"Dinero: "<<dinero<<endl;
-	
 }
 
 Cliente::~Cliente(){

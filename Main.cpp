@@ -38,15 +38,109 @@ int menuCliente(){
 
 }//Fin del menu del cliente
 
+//Opciones del Administrador
+void agregarLibro();
+void ModificarLibro();
+int buscarLibro(int);
+void eliminarLibro();
 
+//Void Agregar Usuarios
+void AgregarUsuario();
 
 int main(){
 	
 	Cliente ** lista_usuarios = new Cliente* [10];//arreglo de 10 usuarios
+	int cantidad_usuarios=0;
+
 	Libro ** lista_libros = new Libro * [10];//arreglo de 10 libros
+	int cantiad_libros=0;
 
+	lista_usuarios[cantidad_usuarios]=new Cliente("n.duron","sybase","Nicolle Duron",20,1000);
 
+	/*
+        cout<<lista_usuarios[cantidad_usuarios]->getUsuario()<<endl
+        <<lista_usuarios[cantidad_usuarios]->getContra()<<endl
+        <<lista_usuarios[cantidad_usuarios]->getNombre()<<endl
+        <<lista_usuarios[cantidad_usuarios]->getEdad()<<endl
+        <<lista_usuarios[cantidad_usuarios]->getDinero()<<endl;    
+    */
+   delete[]lista_usuarios;
+   delete[]lista_libros;
 
+   int opcion;
+   do{
+   		cout<<"1. Login"<<endl;
+   		cout<<"2. Registrarse"<<endl;
+   		cout<<"3. Salir"<<endl;
+   		cout<<"Ingrese una opcion: ";
+   		cin>>opcion;
+   		cout<<endl;
 
+   		switch(opcion){
+
+   			case 1:{
+   				
+   				string usuario;
+   				string contra;
+
+   				cout<<"Ingrese el usuario: ";
+   				cin>>usuario;
+   				cout<<"Ingrese la contraseña: ";
+   				cin>>contra;
+
+   				if(usuario=="n.duron"&&contra=="sybase"){
+
+   					cout<<"Entro el admin";
+
+   				}else{
+
+   				}//Fin del if del login
+
+   			break;}
+
+   			case 2:{
+   				void AgregarUsuario();
+   			break;}
+
+   			default:
+   				cout<<"Opcion no valida"<<endl;
+   			break;
+
+   		}//Fin del switch
+
+	}while(opcion!=3);
 
 }//Fin del main
+
+void AgregarUsuario(){
+
+     if(cantidad_personas<10){
+
+     	string usuario;
+		string contrasenia;
+		string nombre;
+		int edad;
+		int dinero;
+
+        cout<<"Ingrese nuevo cliente"<<endl<<endl;  
+        cout<<"Usuario: ";
+        cin>>usuario;
+        cout<<"Contraseña: ";
+        cin>>contrasenia;
+        cout<<"Nombre: ";
+        cin>>nombre;
+        cout<<"Edad: ";
+        cin>>edad;
+        cout<<"Dinero: ";
+        cin<<dinero;
+                  
+        //agregarlo a la lista
+        lista_usuarios [cantidad_usuarios] =new Cliente(usuario,contrasenia,nombre,edad,dinero);
+        cantidad_usuarios++;         
+        cout<<endl<<"Se agrego el usuario perfectamente"<<endl;         
+     }
+     else{
+        cout<<"Ya no hay espacio disponible en el arreglo para guardar usuarios"<<endl; 
+    }//Fin del if que valida si estan lleno el arreglo de usuarios
+
+}//Fin del Metodo para agregar usuario

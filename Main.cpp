@@ -82,43 +82,37 @@ void agregarLibro(){
 }//Fin del metodo para agregar libros
 
 void ModificarLibro(int posicion){
-	
-	if(cantidad_libros==0){
-		cout<<"No se han agregado libros aun"<<endl<<endl;
-	}else{
 
-		string titulo;
-		string autor;
-		string publicacion;
-		int precio;
-		string estado;
+	string titulo;
+	string autor;
+	string publicacion;
+	int precio;
+	string estado;
 
-        cout<<"Ingrese nuevos datos"<<endl<<endl;  
-        cout<<"Titulo: ";
-        cin>>titulo;
-        cout<<"Autor: ";
-        getline(cin,autor);
-        getline(cin,autor);
-        cout<<"Publicacion: ";
-        cin>>publicacion;
-        cout<<"Precio: ";
-        cin>>precio;
-        cout<<"Estado: ";
-        cin>>estado;
+    cout<<"Ingrese nuevos datos"<<endl<<endl;  
+    cout<<"Titulo: ";
+    cin>>titulo;
+    cout<<"Autor: ";
+    getline(cin,autor);
+    getline(cin,autor);
+    cout<<"Publicacion: ";
+    cin>>publicacion;
+    cout<<"Precio: ";
+    cin>>precio;
+    cout<<"Estado: ";
+    cin>>estado;
                   
-        //Modificarlo de la lista
-        lista_libros [posicion]->setTitulo(titulo);
-        lista_libros [posicion]->setAutor(autor);
-        lista_libros [posicion]->setPublicacion(publicacion);
-        lista_libros [posicion]->setPrecio(precio);
-        lista_libros [posicion]->setEstado(estado);
-
-	}//Fin del if que ve si hay libros en el arreglo
+    //Modificarlo de la lista
+    lista_libros [posicion]->setTitulo(titulo);
+    lista_libros [posicion]->setAutor(autor);
+    lista_libros [posicion]->setPublicacion(publicacion);
+    lista_libros [posicion]->setPrecio(precio);
+    lista_libros [posicion]->setEstado(estado);
 
 }//Fin del metodo para modificar un libro
 
 void eliminarLibro(int posicion){
-
+	lista_libros[posicion]->~Libro();
 }//Fin del motodo para eliminar un libro
 
 void EliminarRegistro(){
@@ -176,6 +170,7 @@ int main(){
 
    int opcion;
    int usuario_menu=1;
+
    do{
    		cout<<"1. Login"<<endl;
    		cout<<"2. Registrarse"<<endl;
@@ -211,24 +206,46 @@ int main(){
 							break;}
 
 							case 2:{
-								//Modificar libro
-								int posicion;
-								cout<<"Ingrese una posicion: ";
-								cin>>posicion;
 
-								while(posicion<0|| posicion>10){
-									cout<<"La posicion no puede ser mayor a 10 o menor que cero"<<endl;
+								//Modificar libro
+								if(cantidad_libros==0){
+									cout<<"No hay libros registrados aun"<<endl<<endl;
+								}else {
+									int posicion;
 									cout<<"Ingrese una posicion: ";
 									cin>>posicion;
-								}//Valida que la posicion sea valida
 
-								ModificarLibro(posicion);
+									while(posicion<0|| posicion>10){
+										cout<<"La posicion no puede ser mayor a 10 o menor que cero"<<endl;
+										cout<<"Ingrese una posicion: ";
+										cin>>posicion;
+									}//Valida que la posicion sea valida
+
+									ModificarLibro(posicion);
+								}//Fin del if que ve si hay libros en el arreglo
 
 							break;}
 
-							case 3:
-								//Eliminar libro
-							break;
+							case 3:{
+
+								//Eliminar un libro
+								if(cantidad_libros==0){
+									cout<<"No hay libros registrados aun"<<endl<<endl;
+								}else {
+									int posicion;
+									cout<<"Ingrese una posicion: ";
+									cin>>posicion;
+
+									while(posicion<0|| posicion>10){
+										cout<<"La posicion no puede ser mayor a 10 o menor que cero"<<endl;
+										cout<<"Ingrese una posicion: ";
+										cin>>posicion;
+									}//Valida que la posicion sea valida
+
+									eliminarLibro(posicion);
+								}//Fin del if que ve si hay libros en el arreglo
+
+							break;}
 
 							case 4:
 								//Eliminar el registro de los libros

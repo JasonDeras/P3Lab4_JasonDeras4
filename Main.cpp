@@ -2,6 +2,7 @@
 #include "Cliente.h"
 #include "Libro.h"
 
+#include <cstring>
 using namespace std;
 
 //Variables controladoras
@@ -154,15 +155,94 @@ void AgregarUsuario(){
 
 //Opciones cliente
 
-void Compra(){
+void Compra(int cliente){
+
+	int posicion;
+
+	//Ordenando nombres
+	cout<<"Libros Disponibles"<<endl;
+	for(int i=0;i<cantidad_libros;i++){
+		if(lista_libros[i]->getEstado()=="disponible"){
+			cout<<"Libro numero: "<<i<<endl
+			<<"Titulo: "<<lista_libros[i]->getTitulo()<<endl
+			<<"Autor: "<<lista_libros[i]->getAutor()<<endl
+			<<"Año de Publicacion: "<<lista_libros[i]->getPublicacion()<<endl
+			<<"Precio: "<<lista_libros[i]->getPrecio()<<endl
+			<<"Estado: "<<lista_libros[i]->getEstado()<<endl;
+		}//Estado Disponible
+
+	}//Fin del for 
+
+	cout<<"Ingrese la posicion del libro a comprar: ";
+	cin>>posicion;
+
+	while(posicion>10 || posicion<0){
+		cout<<"Posicion del libro no valida";
+		cout<<"Ingrese una posicion: ";
+		cin>>posicion;
+	}//Valida la posicion del libro
+
+	if(lista_libros[posicion]->getPrecio()<=lista_usuarios[cliente]->getDinero()){
+
+		lista_usuarios[cliente]->setDinero(lista_usuarios[cliente]->getDinero()-lista_libros[posicion]->getPrecio());
+		lista_libros[posicion]->setEstado("comprado");
+
+	}else{
+		cout<<"No tiene el dinero necesario para comprar el libro"<<endl<<endl;
+	}//Valida si lo puede comprar
 
 }//Fin del metodo de la compra
 
-void Bucar_Autor(){
+void Buscar_Autor(){
+
+	string autor;
+	cout<<"Ingrese el autor del libro a buscar: ";
+	getline(cin,autor);
+	getline(cin,autor);
+
+	for(int i=0;i<cantidad_libros;i++){
+
+		if(lista_libros[i]->getAutor()==autor){
+			cout<<"Encontrado"<<endl;
+			cout<<"Libro numero: "<<i<<endl
+			<<"Titulo: "<<lista_libros[i]->getTitulo()<<endl
+			<<"Autor: "<<lista_libros[i]->getAutor()<<endl
+			<<"Año de Publicacion: "<<lista_libros[i]->getPublicacion()<<endl
+			<<"Precio: "<<lista_libros[i]->getPrecio()<<endl
+			<<"Estado: "<<lista_libros[i]->getEstado()<<endl;
+
+			break;
+		}else{
+			cout<<"No lo encontro"<<endl<<endl;
+		}
+	}//Fin del for
 
 }//Fin del metodo de la busqueda de autor
 
 void Buscar_Titulo(){
+
+	string titulo;
+	cout<<"Ingrese el titulo del libro a buscar: ";
+	getline(cin,titulo);
+	getline(cin,titulo);
+
+	for(int i=0;i<cantidad_libros;i++){
+
+		if(lista_libros[i]->getTitulo()==titulo){
+			cout<<"Encontrado"<<endl;
+			cout<<"Libro numero: "<<i<<endl
+			<<"Titulo: "<<lista_libros[i]->getTitulo()<<endl
+			<<"Autor: "<<lista_libros[i]->getAutor()<<endl
+			<<"Año de Publicacion: "<<lista_libros[i]->getPublicacion()<<endl
+			<<"Precio: "<<lista_libros[i]->getPrecio()<<endl
+			<<"Estado: "<<lista_libros[i]->getEstado()<<endl;
+
+			break;
+		}else{
+			cout<<"No lo encontro"<<endl<<endl;
+		}
+	}//Fin del for
+
 
 }//Fin del metodo de la busqueda por titulo
 
@@ -284,6 +364,7 @@ int main(){
    					for(int i=0;i<10;i++){
    						int usuario_cliente=1;
    						if(lista_usuarios[i]->getUsuario()==usuario &&lista_usuarios[i]->getContra()==contra){
+
    							do{
    								opcion=menuCliente();
    						
@@ -291,7 +372,11 @@ int main(){
 
 									case 1:{
 										//Comprar libro
-										
+										if(cantidad_libros==0){
+											cout<<"No hay libros registrados";
+										}else {
+											Compra(i);
+										}//Fin del if que ve si hay libros
 									break;}
 
 									case 2:{
@@ -321,9 +406,10 @@ int main(){
    									break;}
    								
    								}//Fin del case de las opciones del cliente
-   								cout<<"Volver al menu de admin [1.-Si/2.-No]: ";
+   								cout<<"Volver al menu de cliente [1.-Si/2.-No]: ";
    								cin>>usuario_cliente;
    								}while(usuario_cliente!=2);
+   							break;
    						}//Fin dl fi si entro
 
    					}//Fin del for

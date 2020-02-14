@@ -18,9 +18,10 @@ class Cliente{
 	public: 
 
 		Cliente();
+		Cliente(string, string, int, int);
 
 		string getUsuario();
-		void setString(string);
+		void setUsuario(string);
 
 		string getContraseña();
 		void setContraseña(string);

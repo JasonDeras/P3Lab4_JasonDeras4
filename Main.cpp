@@ -246,13 +246,33 @@ void Buscar_Titulo(){
 
 }//Fin del metodo de la busqueda por titulo
 
-void Agregar_Dinero(){
+void Agregar_Dinero(int cliente){
+	int dinero;
+	cout<<"Ingrese el dinero que quierer agregar: ";
+	cin>>dinero;
+
+	while(dinero<=0){
+		cout<<"No le puede restar dinero"<<endl<<endl;
+		cout<<"Ingrese el dinero: ";
+		cin>>dinero;
+	}//While de los numeros negativos
+
+	lista_usuarios[cliente]->setDinero(lista_usuarios[cliente]->getDinero()+dinero);
 
 }//Fin del metodo para agregar dinero
 
-void Borrar_Cuenta(){
+void Borrar_Cuenta(int cliente){
+
+	lista_usuarios[cliente]->~Cliente();
 
 }//Fin del metodo de borrar cueta
+
+void Restablecer_Contra(int cliente){
+	string contra;
+	cout<<"Ingrese nueva contraseña: ";
+	cin>>contra;
+	lista_usuarios[cliente]->setContra(contra);
+}//Fin del metodo para restablecer la contraseña
 
 int main(){
 
@@ -381,16 +401,26 @@ int main(){
 
 									case 2:{
 										//Buscar por autor
+										if(cantidad_libros==0){
+											cout<<"No hay Libros Registrados"<<endl<<endl;
+										}else{
+											Buscar_Autor();
+										}
 
 									break;}
 
 									case 3:{
 										//Buscar por titulo 
-
+										if(cantidad_libros==0){
+											cout<<"No hay Libros Registrados"<<endl<<endl;
+										}else{
+											Buscar_Titulo();
+										}
 									break;}
 
 									case 4:{
 										//Agregar dinero a mi cuenta
+										Agregar_Dinero(i);
 									break;}
 
 									case 5:{
@@ -399,6 +429,7 @@ int main(){
 
 									case 6:{
 										//Borrar cuenta
+										Borrar_Cuenta(i);
 									break;}
 
    									default:{

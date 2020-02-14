@@ -9,7 +9,7 @@ Cliente ** lista_usuarios = new Cliente *[10];//arreglo de 10 usuarios
 int cantidad_usuarios=0;
 
 Libro ** lista_libros = new Libro *[10];//arreglo de 10 libros
-int cantiad_libros=0;
+int cantidad_libros=0;
 
 int menuAdmin(){
 
@@ -59,9 +59,10 @@ void agregarLibro(){
 
         cout<<"Ingrese nuevo libro"<<endl<<endl;  
         cout<<"Titulo: ";
-        cin>>tirulo;
+        cin>>titulo;
         cout<<"Autor: ";
-        cin>>autor;
+        getline(cin,autor);
+        getline(cin,autor);
         cout<<"Publicacion: ";
         cin>>publicacion;
         cout<<"Precio: ";
@@ -71,7 +72,7 @@ void agregarLibro(){
                   
         //agregarlo a la lista
         lista_libros [cantidad_libros] =new Libro(titulo,autor,publicacion,precio,estado);
-        cantidad_lirbos++;         
+        cantidad_libros++;         
         cout<<endl<<"Se agrego el libro perfectamente"<<endl;         
      }
      else{
@@ -80,9 +81,49 @@ void agregarLibro(){
 
 }//Fin del metodo para agregar libros
 
-void ModificarLibro();
-int buscarLibro(int);
-void eliminarLibro();
+void ModificarLibro(int posicion){
+	
+	if(cantidad_libros==0){
+		cout<<"No se han agregado libros aun"<<endl<<endl;
+	}else{
+
+		string titulo;
+		string autor;
+		string publicacion;
+		int precio;
+		string estado;
+
+        cout<<"Ingrese nuevos datos"<<endl<<endl;  
+        cout<<"Titulo: ";
+        cin>>titulo;
+        cout<<"Autor: ";
+        getline(cin,autor);
+        getline(cin,autor);
+        cout<<"Publicacion: ";
+        cin>>publicacion;
+        cout<<"Precio: ";
+        cin>>precio;
+        cout<<"Estado: ";
+        cin>>estado;
+                  
+        //Modificarlo de la lista
+        lista_libros [posicion]->setTitulo(titulo);
+        lista_libros [posicion]->setAutor(autor);
+        lista_libros [posicion]->setPublicacion(publicacion);
+        lista_libros [posicion]->setPrecio(precio);
+        lista_libros [posicion]->setEstado(estado);
+
+	}//Fin del if que ve si hay libros en el arreglo
+
+}//Fin del metodo para modificar un libro
+
+void eliminarLibro(int posicion){
+
+}//Fin del motodo para eliminar un libro
+
+void EliminarRegistro(){
+
+}//Fin del metodo para eliminar el registro de libros
 
 //Void Agregar Usuarios
 void AgregarUsuario(){
@@ -101,7 +142,8 @@ void AgregarUsuario(){
         cout<<"Contraseña: ";
         cin>>contrasenia;
         cout<<"Nombre: ";
-        cin>>nombre;
+        getline(cin,nombre);
+        getline(cin,nombre);
         cout<<"Edad: ";
         cin>>edad;
         cout<<"Dinero: ";
@@ -119,8 +161,6 @@ void AgregarUsuario(){
 }//Fin del Metodo para agregar usuario
 
 int main(){
-	
-	
 
 	lista_usuarios[cantidad_usuarios]=new Cliente("n.duron","sybase","Nicolle Duron",20,1000);
 
@@ -135,6 +175,7 @@ int main(){
    delete[]lista_libros;
 
    int opcion;
+   int usuario_menu=1;
    do{
    		cout<<"1. Login"<<endl;
    		cout<<"2. Registrarse"<<endl;
@@ -149,6 +190,8 @@ int main(){
    				
    				string usuario;
    				string contra;
+   				int opcion2;
+   				int usuario_admin=1;
 
    				cout<<"Ingrese el usuario: ";
    				cin>>usuario;
@@ -157,7 +200,48 @@ int main(){
 
    				if(usuario=="n.duron"&&contra=="sybase"){
 
-   					cout<<"Entro el admin";
+   					opcion=menuAdmin();
+
+   					do{
+   						switch(opcion){
+
+							case 1:{
+								//Agregar Libro
+								agregarLibro();
+							break;}
+
+							case 2:{
+								//Modificar libro
+								int posicion;
+								cout<<"Ingrese una posicion: ";
+								cin>>posicion;
+
+								while(posicion<0|| posicion>10){
+									cout<<"La posicion no puede ser mayor a 10 o menor que cero"<<endl;
+									cout<<"Ingrese una posicion: ";
+									cin>>posicion;
+								}//Valida que la posicion sea valida
+
+								ModificarLibro(posicion);
+
+							break;}
+
+							case 3:
+								//Eliminar libro
+							break;
+
+							case 4:
+								//Eliminar el registro de los libros
+							break;
+
+   							default:
+   								cout<<"Opcion no valida"<<endl<<endl;
+   							break;
+   								
+   						}//Fin del case de las opciones del usuario
+   						cout<<"Volver al menu de admin [1.-Si/2.-No]: ";
+   						cin>>usuario_admin;
+   					}while(usuario_admin!=2);
 
    				}else{
 
@@ -170,11 +254,15 @@ int main(){
    			break;}
 
    			default:
-   				cout<<"Opcion no valida"<<endl;
+   				cout<<"Opcion no valida"<<endl<<endl;
    			break;
 
    		}//Fin del switch
+   		cout<<"Volver al menu de login o registro [1.-Si,2.-No]: ";
+   		cin>>usuario_menu;
 
-	}while(opcion!=3);
+	}while(usuario_menu!=2);
+	delete[]lista_usuarios;
+    delete[]lista_libros;
 
 }//Fin del main
